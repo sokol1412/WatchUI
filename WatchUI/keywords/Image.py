@@ -8,7 +8,7 @@ import imutils
 from numpy import ndarray
 from skimage.metrics import structural_similarity
 from ..Ibasic.IBasic import IBasic
-
+from typing import Tuple
 
 class Image(IBasic):
     """Class representing the Image and methods for RF keywords regarding
@@ -22,7 +22,7 @@ class Image(IBasic):
     ssim = 1.0
     image_format = "png"
 
-    def _do_checks(self, expected_returned_items: int, **kwargs) -> tuple[Any, ...]:
+    def _do_checks(self, expected_returned_items: int, **kwargs) -> Tuple[Any, ...]:
         keys: list[Any] = list(kwargs.keys())
 
         checked_save_folder: Optional[str] = (
@@ -56,14 +56,14 @@ class Image(IBasic):
         return tuple(output)
 
     @staticmethod
-    def _get_images(base_image_path: str, compared_image_path: str) -> tuple[Any, ...]:
+    def _get_images(base_image_path: str, compared_image_path: str) -> Tuple[Any, ...]:
         img1: Any = cv.imread(base_image_path, 1)
         img2: Any = cv.imread(compared_image_path, 1)
 
         return tuple([img1, img2])
 
     @staticmethod
-    def _convert_to_grey(base_image: Any, target_image: Any) -> tuple[Any, ...]:
+    def _convert_to_grey(base_image: Any, target_image: Any) -> Tuple[Any, ...]:
         gray_img1: Any = cv.cvtColor(base_image, cv.COLOR_BGR2GRAY)
         gray_img2: Any = cv.cvtColor(target_image, cv.COLOR_BGR2GRAY)
 
@@ -72,7 +72,7 @@ class Image(IBasic):
     @staticmethod
     def _compute_score(
         gray_base_img: Any, gray_targed_img: Any
-    ) -> tuple[float, Union[ndarray, Any]]:
+    ) -> Tuple[float, Union[ndarray, Any]]:
         score: float
         diff: Union[ndarray, Any]
         (score, diff) = structural_similarity(gray_base_img, gray_targed_img, full=True)

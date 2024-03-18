@@ -6,7 +6,7 @@ import cv2 as cv
 import pytesseract
 from robot.api.deco import keyword
 from ..Ibasic.IBasic import IBasic
-
+from typing import List
 
 class Tesseract(IBasic):
     """Class representing Tesseract and its methods.
@@ -54,7 +54,7 @@ class Tesseract(IBasic):
         psm: str = "3",
         language: str = "eng",
         path_to_tesseract: str = "",
-    ) -> Union[list[str], str]:
+    ) -> Union[List[str], str]:
         """Convert to text only the selected area of the image and return.
         Args:
             path (str): path to the image
@@ -63,7 +63,7 @@ class Tesseract(IBasic):
             language (str): [description]
             path_to_tesseract (str): path to the installed tesseract library
         Returns:
-            Union[list[str], str]: returned text
+            Union[List[str], str]: returned text
         """
         string_list = []
         text: Union[bytes, str]
