@@ -17,7 +17,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9, <4.0"
+python = ">=3.8"
 opencv-python = "*"
 pandas = "*"
 Pillow = "*"
